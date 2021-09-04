@@ -1,0 +1,22 @@
+{
+  "users":
+    {
+      "_id": {
+          "$oid": "613224100b1b628947681a3c"
+      },
+      "username": "root",
+      "name": "root",
+      "password": "password",
+      "__v": {
+          "$numberInt": "6"
+      }
+    },
+  "gatherings":
+    {
+      "id": 12341234,
+      "date": "Sat. September 4",
+      "time": "6 p.m. - 8 p.m.",
+      "content": "Due to it being a holiday weekend, we’re going to keep it low key and have an evening of fellowship and fun.  There won’t be an organized plan for the evening.  Our core will get us back to business the following week.  For this week, bring any outdoor games you might like to play.  If we need a topic of discussion for the evening between gaming, feel free to share your favorite moment/experience from this summer.\n\nWe look forward to seeing everyone (the people without cool plans for the holiday weekend)\n\nDan, David, James, Kevin, and Nayt"
+    
+    }
+}

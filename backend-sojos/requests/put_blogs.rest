@@ -1,0 +1,9 @@
+PUT http://localhost:3003/api/blogs/610c6d7293787c3a44c17982
+Content-Type: application/json
+
+{
+  "title": "React tests well",
+  "author": "Placeholder Name",
+  "url":"https://placeholder.com/",
+  "likes": 10
+}

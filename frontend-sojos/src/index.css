@@ -1,0 +1,112 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+#header{
+  display:flex;
+  justify-content:center;
+  margin-top: 3vw;
+}
+#logo{
+  width:40%;
+}
+
+#loginForm{
+  margin-top: 2vw;
+  display:flex;
+  justify-content:center;
+  text-align: center;
+}
+
+.form-group{
+  padding:2px;
+}
+
+.input-box{
+  border: none;
+  font-size:larger;
+  width: 210px;
+}
+
+.input-box:focus-visible{
+  outline:none;
+  margin-right:2px;
+}
+
+.input-wrapper{
+  display:flex;
+  border-radius: 20px;
+  box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 32%);
+  padding: 5px;
+  width:250px;
+  align-items: center;
+  margin:1vw;
+  transition: all .3s;
+}
+
+.input-wrapper:hover{
+  box-shadow: 0 1px 4px 0px rgb(32 100 32 / 60%);
+  background-color: rgb(32 100 32 / 3%)
+}
+
+.input-wrapper:focus-within{
+  box-shadow: 0 1px 4px 0px rgb(32 100 32/ 60%)
+}
+
+.input-icon{
+  padding-left: 5px;
+  width: 20px;
+  height: 20px;
+  padding-right: 8px;
+}
+
+#login-button{
+  margin-top: 3vw;
+  font-size: larger;
+  color: black;
+  transition: all .6s;
+}
+
+#login-button:hover{
+  letter-spacing: 7px;
+  font-size: 16px;
+  background-color: none;
+}
+
+#cnclLgnBtn{
+  margin-top: 3vw;
+  font-size: larger;
+  color: black;
+  transition: all .6s;
+}
+
+#cnclLgnBtn:hover{
+  letter-spacing: 7px;
+  font-size: 16px;
+  background-color: none;
+}
+
+.gatheringContent{
+  white-space: pre-wrap;
+  font-size: 20px;
+}
+
+#gatheringTitle{
+  text-align: center;
+  margin-top: 100px;
+  color: green;
+}
+
+#rsvp-btn{
+  font-size: 20px;
+}
