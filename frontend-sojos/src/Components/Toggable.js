@@ -21,7 +21,6 @@ const Toggable = React.forwardRef((props, ref) => {
   return (
     <div>
       <div style={hideWhenVisible}>
-        
         <Button id={props.id} onClick={toggleVisibility}>{props.buttonLabel}</Button>
       </div>
       <div style={showWhenVisible} className='toggableContent'>

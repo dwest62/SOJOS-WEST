@@ -9,7 +9,9 @@ import {
 } from 'react-router-dom'
 
 ReactDOM.render(
+  <Provider store={store}>
     <Router>
       <App />
-    </Router>,
+    </Router>
+  </Provider>,
   document.getElementById('root'))
