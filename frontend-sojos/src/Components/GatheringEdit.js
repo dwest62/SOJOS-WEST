@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { Container } from '@material-ui/core'
 import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
 import { updateGathering } from '../reducers/gatheringReducer'
@@ -35,8 +34,7 @@ const GatheringEdit = ({gathering}) => {
       street: event.target.street.value,
       city: event.target.city.value,
       state: event.target.state.value,
-      postal: event.target.postal.value,
-      country: event.target.country.value
+      postal: event.target.postal.value
     }
     const content = JSON.stringify(convertToRaw(editor.getCurrentContent()))
     const updatedGathering = {
@@ -59,84 +57,102 @@ const GatheringEdit = ({gathering}) => {
   
   return (
     <div>
-      <Container>
-        <form onSubmit={handleUpdateGathering}>
-              <div className='input-wrapper'>
+      <div>
+        <form className='newGath' onSubmit={handleUpdateGathering}>
+          <div className='newGathWrapper'>
+            <h1 className='newGatheringTitle'>
+              Edit Gathering
+            </h1>
+            When:
+            <div className='newGathInputs'>
+              <div className='input-wrapper2'>
                 <input 
-                className='input-box'
+                className='input-box2'
                 name='date'
                 type='date'
                 defaultValue={initialDate}
                 readOnly={false}
-              />
-              </div>
-              <div className='input-wrapper'>
-                <input 
-                  className='input-box'
-                  name='startTime'
-                  type='time'
-                  defaultValue={gathering.startTime}
-                  placeholder='start time'
                 />
               </div>
-              <div className='input-wrapper'>
-                <input
-                  className='input-box'
-                  name='endTime'
-                  type='time'
-                  defaultValue={gathering.endTime}
-                />
+              <div className='timewrap'>
+                <div className='input-wrapper2'>
+                  <input 
+                    className='input-box3'
+                    name='startTime'
+                    type='time'
+                    defaultValue={gathering.startTime}
+                    placeholder='start time'
+                  />
+                </div>
+                <div className='input-wrapper2'>
+                  <input
+                    className='input-box3'
+                    name='endTime'
+                    type='time'
+                    defaultValue={gathering.endTime}
+                  />
+                </div>
               </div>
-              <div className='input-wrapper'>
+              
+            </div>
+            Where:
+            <div className='newGathInputs'>
+              <div className='input-wrapper2'>
                 <input 
-                  className='input-box'
+                  className='input-box2'
                   name='street'
                   placeholder='2827 N Newton Ave'
                   defaultValue={gathering.location.street}
                 />
               </div>
-              <div className='input-wrapper'>
+              <div className='input-wrapper2'>
                 <input
-                  className='input-box'
+                  className='input-box2'
                   name='city'
                   placeholder='Minneapolis'
                   defaultValue={gathering.location.city} 
                 />
               </div>
-              <div className='input-wrapper'>
+              <div className='input-wrapper2'>
                 <input
-                  className='input-box'
+                  className='input-box2'
                   name='state'
                   placeholder='MN'
                   defaultValue={gathering.location.state} 
                 />
               </div>
-              <div className='input-wrapper'>
+              <div className='input-wrapper2'>
                 <input
-                  className='input-box'
+                  className='input-box2'
                   name='postal'
                   placeholder='55411'
                   defaultValue={gathering.location.postal}
                 />
               </div>
-              <div className='input-wrapper'>
-                <input
-                  className='input-box'
-                  name='country'
-                  placeholder='USA'
-                  defaultValue={gathering.location.country}
-                />
-              </div>
-              <div style={{ border: "1px solid black", padding: '2px', minHeight: '400px' }}>
+            </div>
+              Details:
+              <div style={{ border: "1px solid black", padding: '2px', minHeight: '300px', marginTop: '20px'}}>
                 <Editor
+                  toolbar={{
+                    options: ['inline', 'blockType', 'fontSize', 'fontFamily', 'list', 'textAlign', 'colorPicker', 'embedded', 'emoji', 'remove', 'history'],
+                    inline: { inDropdown: true },
+                    list: { inDropdown: true },
+                    textAlign: { inDropdown: true },
+                    link: { inDropdown: true },
+                    history: { inDropdown: true },
+                  }}
                   editorState={editor}
                   onEditorStateChange={setEditor}
                 />
               </div>
-            <Button type='submit'>submit</Button>
-            <Button onClick={() => history.push('/')}>cancel</Button>
+              <div>
+                <Button type='submit'>submit</Button>
+                <Button onClick={() => history.push('/')}>cancel</Button>
+              </div>
+            </div>
           </form>
-        </Container>
+          
+      </div>
     </div>
   )
 }

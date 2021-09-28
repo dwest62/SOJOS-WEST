@@ -115,6 +115,7 @@ export const updateRSVP = ( gathering, rsvp, user ) => {
 
 export const addGuest = ( gathering, guest) => {
   return async dispatch => {
+    const generateId = Math.floor(Math.random()*100000)
     const updatedGathering = {
       ...gathering, 
       rsvp: gathering.rsvp
@@ -123,7 +124,8 @@ export const addGuest = ( gathering, guest) => {
           lastName: guest.lastName,
           firstName: guest.firstName,
           rsvp:'true',
-          kid: guest.kid
+          kid: guest.kid,
+          id:generateId.toString()
         })
     }
     const response = await gatheringService
@@ -135,13 +137,13 @@ export const addGuest = ( gathering, guest) => {
   }
 }
 
-export const removeGuest = (name, family, gathering) => {
+export const removeGuest = (id, family, gathering) => {
   return async dispatch => {
     const updatedGathering = {...gathering, rsvp:
       gathering.rsvp.map(data =>
         data.username === 'guest'
           ? data.lastName === family
-            ? data.firstName === name
+            ? data.id === id
               ? data = null
               : data
             : data

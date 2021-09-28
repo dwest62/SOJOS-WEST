@@ -3,52 +3,91 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { sortByFamily } from './listHelper'
 import { removeGuest } from '../reducers/gatheringReducer'
+import ThumbDown from '@material-ui/icons/ThumbDown'
+import ThumbUp from '@material-ui/icons/ThumbUp'
 
-const RSVPList = ({number}) => {
-  const gatherings = 
-    useSelector(state => state.gatherings)
+
+const RSVPList = ({gathering}) => {
   const user =
     useSelector(state => state.user).user
+
   const dispatch = useDispatch()
 
-  const rsvpStatus = (rsvp) => {
+  const rsvpStatus = (rsvp, name) => {
     switch(rsvp){
       case 'true':
-        return 'yes'
+        return (
+          <div className='rsvpContentWrapperUp'>
+            <div className='rsvpContentText'>
+              {name} 
+            </div>
+            <div>
+              <ThumbUp id='thumbup'/>
+            </div>
+          </div>  
+        )
       case 'false':
-        return 'no'
+        return (
+          <div className='rsvpContentWrapperDown'>
+            <div className='rsvpContentText'>
+              {name} 
+            </div>
+            <div>
+              <ThumbDown id='thumbdown'/>
+            </div>
+          </div>
+        )
       case 'undecided':
-        return 'undecided'
-      default: 
-        return 'undecided'
+        return (
+          <div className='rsvpContentWrapperNeutral'>
+            <div className='rsvpContentText'>
+              {name} 
+            </div>
+            <div id='thumbneutral'>
+              ?
+            </div>
+          </div>  
+        )
+      default:
+        return (
+          <div>
+            <div className='rsvpContentText'>
+              {name} 
+            </div>
+            <div id='thumbneutral'>
+              ?
+            </div>
+          </div>  
+        )
     }
   }
-
-  const delGuest = (name, family) => {
-    const gath = gatherings[number]
-    dispatch(removeGuest(name,family, gath))
+  const delGuest = (id, family) => {
+    const gath = gathering
+    dispatch(removeGuest(id,family, gath))
   }
-
+  
   return (
-    <div>
-      {sortByFamily(gatherings[number]).map(data => 
-        <div key = {data.family}>
-          <strong>{data.family} family {" "}</strong>
+    <div className='rsvpMain'>
+      {sortByFamily(gathering).map(data => 
+        <div className='rsvpBox' key = {data.family}>
+          <div className='rsvpFamilyName'>{data.family}</div>
           {data.members.map(data => 
-            <div>
-              {data.name} {rsvpStatus(data.rsvp)}
+            <div key={data.name}>
+              {rsvpStatus(data.rsvp, data.name)}
             </div>
           )}
           {data.guests.length > 0
             ? 
-              <div> 
+            <div>
+              <div className='guests'> 
                 <strong>Guests:</strong>
+              </div>
                 {data.guests.map(data => 
-                  <div>
+                  <div className='guestnames' key={data.id}>
                     {data.name}
                     {
                       user.lastName === data.family
-                        ? <Button onClick={() => delGuest(data.name, data.family)}>remove</Button>
+                        ? <Button onClick={() => delGuest(data.id, data.family)}>remove</Button>
                         : null
                     }
                   </div>

@@ -4,6 +4,7 @@ import userReducer from './reducers/userReducer'
 import usersReducer from './reducers/usersReducer'
 import gatheringReducer from './reducers/gatheringReducer'
 import { composeWithDevTools } from 'redux-devtools-extension'
+import notificationReducer from './reducers/notificationReducer'
 
 
 
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   user: userReducer,
   users: usersReducer,
   gatherings: gatheringReducer,
+  notification: notificationReducer
 })
 
 const store = createStore(

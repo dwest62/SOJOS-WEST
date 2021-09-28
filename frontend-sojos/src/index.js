@@ -7,6 +7,7 @@ import store from './store'
 import { 
   BrowserRouter as Router,
 } from 'react-router-dom'
+import './fonts/NEON.ttf'
 
 ReactDOM.render(
   <Provider store={store}>
