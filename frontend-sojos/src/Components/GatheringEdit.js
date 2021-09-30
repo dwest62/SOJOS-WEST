@@ -17,6 +17,15 @@ const GatheringEdit = ({gathering}) => {
   EditorState.createWithContent(
     convertFromRaw(JSON.parse(gathering.content)))
   )
+  
+  const [ address, setAddress ] = 
+    useState({
+      street:gathering.location.street,
+      city:gathering.location.city,
+      state:gathering.location.state,
+      postal:gathering.location.postal
+    })
+
   useEffect(() =>{
     console.log(editor)
   }, [editor])
@@ -50,10 +59,108 @@ const GatheringEdit = ({gathering}) => {
     history.push('/')
   }
 
-  /*const selectHost = (event) => {
-    console.log(event.target.value,'event')
-    //pre-install host home names.
-  }*/
+  const selectHost = (event) => {
+    event.preventDefault()
+    setAddress()
+    const value = event.target.value
+    switch(value){
+      case "RiverPark":
+        return( 
+          setAddress({
+            street:'230 83rd Ave N',
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "OrchardTrailPark":
+        return( 
+          setAddress({
+            street:'10601 Oxbow Creek Drive N',
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "BeaconOfHope":
+        return( 
+          setAddress({
+            street:'2827 N Newton Ave',
+            city:'Minneapolis',
+            state:'MN',
+            postal:'55411'
+          })
+        )
+      case "Wanggaard":
+        return( 
+          setAddress({
+            street:"1921 Elliot Ave",
+            city:'Minneapolis',
+            state:'MN',
+            postal:'55404'
+          })
+        )
+      case "Gonsalves":
+        return( 
+          setAddress({
+            street:"9135 Hyland Creek Road Bloomington",
+            city:'Bloomington',
+            state:'MN',
+            postal:'55437'
+          })
+        )
+      case "Mathsen":
+        return( 
+          setAddress({
+            street:"10336 Yates Drive N",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "Fischer":
+        return( 
+          setAddress({
+            street:"8656 Riverview Lane N",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55444'
+          })
+        )
+      case "Callaghan":
+        return( 
+          setAddress({
+            street:"7940 Sunkist Blvd",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55444'
+          })
+        )
+      default: 
+        return setAddress({street:'', city:'', state:'', postal:''})
+    }
+  }
+  const defaultHost = (value) => {
+    switch(value){
+      case "230 83rd Ave N":
+        return "RiverPark"
+      case "10601 Oxbow Creek Drive N":
+        return "OrchardTrailPark"
+      case "2827 N Newton Ave":
+        return "BeaconOfHope"
+      case "1921 Elliot Ave":
+        return "Wanggaard"
+      case "9135 Hyland Creek Road":
+        return "Gonsalves"
+      case "10336 Yates Drive N":
+        return "Mathsen"
+      case "7940 Sunkist Blvd":
+        return "Callaghan"
+      case "8656 Riverview Lane N":
+        return "Fischer"
+      default: return "None"
+    }
+  }
   
   return (
     <div>
@@ -93,16 +200,29 @@ const GatheringEdit = ({gathering}) => {
                   />
                 </div>
               </div>
-              
             </div>
             Where:
             <div className='newGathInputs'>
+              <div className='input-wrapper2' id='addr-sel-wrapper'>
+                <select className='addr-sel' onChange={selectHost} defaultValue={defaultHost(gathering.location.street)}>
+                  <option value="None">(None)</option>
+                  <option value="RiverPark">River Park</option>
+                  <option value="OrchardTrailPark">Orchard Trail Park</option>
+                  <option value="BeaconOfHope">Beacon of Hope</option>
+                  <option value="Wanggaard">Wanggaard's</option>
+                  <option value="Gonsalves">Gonsalves'</option>
+                  <option value="Mathsen">Mathsen's</option>
+                  <option value="Fischer">Fischer's</option>
+                  <option value="Callaghan">Callaghan's</option>
+                </select>
+              </div>
               <div className='input-wrapper2'>
                 <input 
                   className='input-box2'
                   name='street'
                   placeholder='2827 N Newton Ave'
-                  defaultValue={gathering.location.street}
+                  value={address.street}
+                  onChange={(event) => setAddress({...address, street:event.target.value})}
                 />
               </div>
               <div className='input-wrapper2'>
@@ -110,7 +230,8 @@ const GatheringEdit = ({gathering}) => {
                   className='input-box2'
                   name='city'
                   placeholder='Minneapolis'
-                  defaultValue={gathering.location.city} 
+                  value={address.city}
+                  onChange={(event) => setAddress({...address, city:event.target.value})}
                 />
               </div>
               <div className='input-wrapper2'>
@@ -118,7 +239,8 @@ const GatheringEdit = ({gathering}) => {
                   className='input-box2'
                   name='state'
                   placeholder='MN'
-                  defaultValue={gathering.location.state} 
+                  value={address.state}
+                  onChange={(event) => setAddress({...address, state:event.target.value})}
                 />
               </div>
               <div className='input-wrapper2'>
@@ -126,7 +248,8 @@ const GatheringEdit = ({gathering}) => {
                   className='input-box2'
                   name='postal'
                   placeholder='55411'
-                  defaultValue={gathering.location.postal}
+                  value={address.postal}
+                  onChange={(event) => setAddress({...address, postal:event.target.value})}
                 />
               </div>
             </div>

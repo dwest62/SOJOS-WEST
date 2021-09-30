@@ -17,6 +17,11 @@ code {
     monospace;
 }
 
+.notif-wrap{
+  display:flex;
+  justify-content: center;
+  gap: 5px;
+}
 #header{
   display:flex;
   justify-content:center;
@@ -39,8 +44,8 @@ code {
 
 .input-box{
   border: none;
-  font-size:larger;
-  width: 210px;
+  font-size:medium;
+  width: 240px;
 }
 
 .input-box:focus-visible{
@@ -53,7 +58,7 @@ code {
   border-radius: 20px;
   box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 32%);
   padding: 5px;
-  width:250px;
+  width:285px;
   align-items: center;
   margin:1vw;
   transition: all .3s;
@@ -69,6 +74,14 @@ code {
 }
 .timewrap{
   display: flex;
+}
+
+.addr-sel{
+  border:0px;
+  outline: 0px;
+  background-color: white;
+  padding-left: 3px;
+  padding-right: 3px;
 }
 .input-wrapper2{
   display:flex;
@@ -160,6 +173,7 @@ code {
   border-style:solid;
   border-radius: 10px;
   border-color: grey;
+  font-family: Impact;
 }
 
 .gatheringTitle{
@@ -471,19 +485,30 @@ code {
 .rsvpMain{
   display: flex;
   flex-wrap: wrap;
-  justify-content:stretch;
+  justify-content: center;
+  gap: 14px;
+}
+
+.rsvpHead{
+  width: fit-content;
+  margin: auto;
+  margin-bottom: 10px;
 }
 .rsvpBox{
-  width: fit-content;
+  width: 115px;
+  height:fit-content;
   border-style: solid;
   border-color: grey;
   background-color:rgb(255, 255, 255);
   border-radius: 10px;
-  margin-left:10px;
   padding:7px;
   margin-bottom: 7px;
+  font-family: impact;
 }
-
+.rsvpWrapper{
+  display: flex;
+  flex-direction: column;
+}
 .rsvpFamilyName{
   font-weight:bold;
   width: fit-content;

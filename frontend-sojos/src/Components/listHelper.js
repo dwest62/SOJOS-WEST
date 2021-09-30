@@ -19,6 +19,17 @@ export const sortByFamily = (gathering) => {
       result = result.concat(object)
     }
   }
+  result = result
+    .sort((a,b) => {
+      if(a.members.length > b.members.length){return -1}
+      if(a.members.length < b.members.length){return 1}
+      if(a.members.length === b.members.length){
+        if(a.lastName > b.lastName){return 1}
+        if(a.lastName < b.lastName){return -1}
+        return 0
+      }
+      return 0
+    })
   return(result)
 }
 

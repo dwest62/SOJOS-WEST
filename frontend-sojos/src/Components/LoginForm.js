@@ -28,7 +28,9 @@ const LoginForm = () => {
     <div>
       <Container id='loginForm'>
         <Toggable id='login-button' buttonLabel = 'log in' cancel='cancel'>
+          
           <form onSubmit={handleLogin}>
+          <Notification />
             <div className= 'form-wrapper'>
               <div className='input-wrapper'>
                 <img className='input-icon' src="https://img.icons8.com/plumpy/24/000000/user.png" alt='username'/>
@@ -41,7 +43,6 @@ const LoginForm = () => {
             </div>
             <Button type='submit'>login</Button>
           </form>
-          <Notification />
         </Toggable>
       </Container>
     </div>

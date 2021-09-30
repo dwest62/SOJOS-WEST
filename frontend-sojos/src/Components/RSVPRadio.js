@@ -6,7 +6,6 @@ import ThumbsDownOutlinedIcon from '@material-ui/icons/ThumbDown'
 import { message } from '../reducers/notificationReducer'
 
 const RSVPRadio = ({ data, gathering }) => {
-
   const [ checked, setChecked ] = 
     useState({ 
       up:false, down:false, neutral: false
@@ -40,19 +39,20 @@ const RSVPRadio = ({ data, gathering }) => {
     const value = event.target.value
     dispatch(updateRSVP(gathering, value, person))
     const state = {up:false, down:false, neutral: false}
+    const name = event.target.getAttribute('data-firstname')
   
     switch(event.target.value){
       case "undecided":
         setChecked({ ...state, neutral:true })
-        dispatch(message(`RSVP status for ${member} updated to undecided.`, 5))
+        dispatch(message(`RSVP status for ${name} updated to undecided.`, 5))
         break;
       case "false":
         setChecked({ ...state, down:true })
-        dispatch(message(`RSVP status for ${member} updated to no.`, 5))
+        dispatch(message(`RSVP status for ${name} updated to no.`, 5))
         break;
       case "true":
         setChecked({ ...state, up:true })
-        dispatch(message(`RSVP status for ${member} updated to yes.`, 5))
+        dispatch(message(`RSVP status for ${name} updated to yes.`, 5))
         break;
       default: return null
     }
@@ -77,7 +77,7 @@ const RSVPRadio = ({ data, gathering }) => {
   return(
     <div id='rsvp-content' onChange={handleOnChange}>
       <div id='rsvp-name'>
-        {data.username}:
+        {data.firstName}:
       </div>
       <label className='thumbslabel'>
         <ThumbsUpOutlinedIcon 
@@ -89,7 +89,8 @@ const RSVPRadio = ({ data, gathering }) => {
           id='thumbsUp'
           type='radio'
           defaultChecked={getUserRSVPstatus(data.username) === 'true'}
-          name={data.username} 
+          name={data.username}
+          data-firstname={data.firstName}
           value='true' 
         />
       </label>
@@ -103,6 +104,7 @@ const RSVPRadio = ({ data, gathering }) => {
           type='radio'
           defaultChecked={getUserRSVPstatus(data.username) === 'undecided'}
           name={data.username}
+          data-firstname={data.firstName}
           value='undecided'
         />
       </label>  
@@ -116,7 +118,8 @@ const RSVPRadio = ({ data, gathering }) => {
         id='thumbsDown'
         type='radio' 
         defaultChecked={getUserRSVPstatus(data.username) === 'false'} 
-        name={data.username} 
+        name={data.username}
+        data-firstname={data.firstName}
         value='false'
         />
       </label>           

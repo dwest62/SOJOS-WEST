@@ -19,7 +19,6 @@ const HomePage = () => {
 
   useEffect(() => {
     setGathering(sortByDate(gatherings)[0])
-    console.log('sortByDate', sortByDate(gatherings))
   }, [gatherings])
 
   const [ editor, setEditor ] = useState(() =>
@@ -37,7 +36,28 @@ const HomePage = () => {
   /********************************************************* */
 
   const rsvpValue = gathering.rsvp.filter(data => data.rsvp === 'true').length
-  console.log(rsvpValue)
+
+  const defaultHost = (value) => {
+    switch(value){
+      case "230 83rd Ave N":
+        return "River Park"
+      case "10601 Oxbow Creek Drive N":
+        return "Orchard Trail Park"
+      case "2827 N Newton Ave":
+        return "Beacon of Hope"
+      case "1921 Elliot Ave":
+        return "Wanggaard's"
+      case "9135 Hyland Creek Road":
+        return "Gonsalves'"
+      case "10336 Yates Drive N":
+        return "Mathsen's"
+      case "7940 Sunkist Blvd":
+        return "Callaghan's"
+      case "8656 Riverview Lane N":
+        return "Fischer's"
+      default: return "None"
+    }
+  }
 
   return(
       <div className='gatheringContent'>
@@ -64,6 +84,7 @@ const HomePage = () => {
           </p>
           <div id='location'>
             <strong>Location:</strong>{' '}
+            {defaultHost(gathering.location.street)}
             <div id='locationdata'>
               {gathering.location.street}
               <div>

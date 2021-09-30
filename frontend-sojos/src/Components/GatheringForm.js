@@ -16,6 +16,7 @@ const GatheringForm = () => {
   
   const [ editor, setEditor ] = useState(() =>
   EditorState.createEmpty())
+  const [ address, setAddress ] = useState({street:'', city:'', state:'', postal:''})
 
   useEffect(() => {
     console.log(editor)
@@ -48,6 +49,87 @@ const GatheringForm = () => {
     history.push('/')
   }
 
+  const selectHost = (event) => {
+    event.preventDefault()
+    setAddress()
+    const value = event.target.value
+    switch(value){
+      case "RiverPark":
+        return( 
+          setAddress({
+            street:'230 83rd Ave N',
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "OrchardTrailPark":
+        return( 
+          setAddress({
+            street:'10601 Oxbow Creek Drive N',
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "BeaconOfHope":
+        return( 
+          setAddress({
+            street:'2827 N Newton Ave',
+            city:'Minneapolis',
+            state:'MN',
+            postal:'55411'
+          })
+        )
+      case "Wanggaard":
+        return( 
+          setAddress({
+            street:"1921 Elliot Ave",
+            city:'Minneapolis',
+            state:'MN',
+            postal:'55404'
+          })
+        )
+      case "Gonsalves":
+        return( 
+          setAddress({
+            street:"9135 Hyland Creek Road",
+            city:'Bloomington',
+            state:'MN',
+            postal:'55437'
+          })
+        )
+      case "Mathsen":
+        return( 
+          setAddress({
+            street:"10336 Yates Drive N",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55443'
+          })
+        )
+      case "Fischer":
+        return( 
+          setAddress({
+            street:"8656 Riverview Lane N",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55444'
+          })
+        )
+      case "Callaghan":
+        return( 
+          setAddress({
+            street:"7940 Sunkist Blvd",
+            city:'Brooklyn Park',
+            state:'MN',
+            postal:'55444'
+          })
+        )
+      default: 
+        return setAddress({street:'', city:'', state:'', postal:''})
+    }
+  }
   /* get next saturday functionality*/
     const nextSat =moment().weekday(6).format("YYYY-MM-DD")
   
@@ -72,21 +154,57 @@ const GatheringForm = () => {
                   <input className='input-box3' name='endTime' type='time' placeholder='start time' defaultValue={'18:30'}/>
                 </div>
               </div>
-              
             </div>
           Where:
             <div className='newGathInputs'>
-              <div className='input-wrapper2'>
-                <input className='input-box2' name='street' placeholder='2827 N Newton Ave' />
+              <div className='input-wrapper2' id='addr-sel-wrapper'>
+                <select className='addr-sel' onChange={selectHost}>
+                  <option value="None">(None)</option>
+                  <option value="RiverPark">River Park</option>
+                  <option value="OrchardTrailPark">Orchard Trail Park</option>
+                  <option value="BeaconOfHope">Beacon of Hope</option>
+                  <option value="Wanggaard">Wanggaard's</option>
+                  <option value="Gonsalves">Gonsalves'</option>
+                  <option value="Mathsen">Mathsen's</option>
+                  <option value="Fischer">Fischer's</option>
+                  <option value="Callaghan">Callaghan's</option>
+                </select>
               </div>
               <div className='input-wrapper2'>
-                <input className='input-box2' name='city' placeholder='Minneapolis' />
+                <input 
+                  className='input-box2'
+                  name='street'
+                  placeholder='2827 N Newton Ave'
+                  value={address.street}
+                  onChange={(event) => setAddress({...address, street:event.target.value})}
+                />
               </div>
               <div className='input-wrapper2'>
-                <input className='input-box2' name='state' placeholder='MN' />
+                <input
+                  className='input-box2'
+                  name='city'
+                  placeholder='Minneapolis'
+                  value={address.city}
+                  onChange={(event) => setAddress({...address, city:event.target.value})}
+                />
               </div>
               <div className='input-wrapper2'>
-                <input className='input-box2' name='postal' placeholder='55411' />
+                <input
+                  className='input-box2'
+                  name='state'
+                  placeholder='MN'
+                  value={address.state}
+                  onChange={(event) => setAddress({...address, state:event.target.value})}
+                />
+              </div>
+              <div className='input-wrapper2'>
+                <input
+                  className='input-box2'
+                  name='postal'
+                  placeholder='55411'
+                  value={address.postal}
+                  onChange={(event) => setAddress({...address, postal:event.target.value})}
+                />
               </div>
             </div>
             Details:

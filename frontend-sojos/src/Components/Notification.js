@@ -1,21 +1,22 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 
 const Notification = () => {
   
   const notification = useSelector(state => state.user).notification
-  const style = {
-    border: 'solid',
-    padding: 10,
-    borderWidth: 1
-  }
 
   if (notification===null){
     return null
   } else {
     return (
-      <div style={style}>
-        {notification}
+      <div className="notif-wrap">
+        <div>
+          <ErrorOutlineIcon color='error'/>
+        </div>
+        <div>
+          {notification}
+        </div>
       </div>
     )
   }

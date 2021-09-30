@@ -67,36 +67,41 @@ const RSVPList = ({gathering}) => {
   }
   
   return (
-    <div className='rsvpMain'>
-      {sortByFamily(gathering).map(data => 
-        <div className='rsvpBox' key = {data.family}>
-          <div className='rsvpFamilyName'>{data.family}</div>
-          {data.members.map(data => 
-            <div key={data.name}>
-              {rsvpStatus(data.rsvp, data.name)}
-            </div>
-          )}
-          {data.guests.length > 0
-            ? 
-            <div>
-              <div className='guests'> 
-                <strong>Guests:</strong>
+    <div>
+      <div className='rsvpHead'><h3>RSVP List</h3></div>
+      <div className='rsvpMain'>
+        {sortByFamily(gathering).map(data =>
+          <div className='rsvpWrapper'key={data.family}>
+          <div className='rsvpBox'>
+            <div className='rsvpFamilyName'>{data.family}</div>
+            {data.members.map(data => 
+              <div key={data.name}>
+                {rsvpStatus(data.rsvp, data.name)}
               </div>
-                {data.guests.map(data => 
-                  <div className='guestnames' key={data.id}>
-                    {data.name}
-                    {
-                      user.lastName === data.family
-                        ? <Button onClick={() => delGuest(data.id, data.family)}>remove</Button>
-                        : null
-                    }
-                  </div>
-                )}
-              </div>
-            : null
-          }
-        </div>
-      )}
+            )}
+            {data.guests.length > 0
+              ? 
+              <div>
+                <div className='guests'> 
+                  <strong>Guests:</strong>
+                </div>
+                  {data.guests.map(data => 
+                    <div className='guestnames' key={data.id}>
+                      {data.name}
+                      {
+                        user.lastName === data.family
+                          ? <Button onClick={() => delGuest(data.id, data.family)}>remove</Button>
+                          : null
+                      }
+                    </div>
+                  )}
+                </div>
+              : null
+            }
+          </div>
+          </div>
+        )}
+      </div>
     </div>
   )
 }
