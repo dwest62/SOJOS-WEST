@@ -1,0 +1,4 @@
+backend-sojos/node_modules/
+frontend-sojos/node_modules
+backend-sojos/.env
+backend-sojos/controllers/email.js
