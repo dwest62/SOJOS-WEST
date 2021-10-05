@@ -1,9 +1,0 @@
-Post http://localhost:3003/api/blogs
-Content-Type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InJvb3QiLCJpZCI6IjYxMTdlNTBjY2Y3NmZlY2UyYzA2YzIyOCIsImlhdCI6MTYzMDQzNTc2Nn0.YY5jyJIWWpas5I3EmP_hPbvj82HVwMJOQ427gOfsALw
-
-{ 
-  "title": "testBlg",
-  "author": "Bill Billinson",
-  "url": "TestURL"
-}

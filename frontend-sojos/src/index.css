@@ -20,8 +20,15 @@ code {
 .notif-wrap{
   display:flex;
   justify-content: center;
+  align-items: center;
   gap: 5px;
 }
+
+.logNotif{
+  width: fit-content;
+  height: fit-content;
+}
+
 #header{
   display:flex;
   justify-content:center;
@@ -173,7 +180,6 @@ code {
   border-style:solid;
   border-radius: 10px;
   border-color: grey;
-  font-family: Impact;
 }
 
 .gatheringTitle{
@@ -196,6 +202,8 @@ code {
   display: flex;
   align-items: left;
   flex-wrap:wrap;
+  transition: all .5s;
+  margin-bottom: 20px;
 }
 
 #rsvp-content{
@@ -213,7 +221,8 @@ code {
   font: bold;
 }
 #notification:empty{
-  display: none;
+  border: none;
+  height: 29px;
 }
 
 .gatheringParagraph{
@@ -235,7 +244,14 @@ code {
   position: fixed;
   z-index: 100;
 }
-
+.input-wrapper3{
+    border-radius: 0px;
+    box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 32%);
+    padding: 3px;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+}
 .nav-right{
   display: flex;
   flex-wrap: wrap;
@@ -260,6 +276,7 @@ code {
 
 #addGuestBtn{
   font-size: 16px;
+  margin-top: 7px;
 }
 
 .postInfo{
@@ -269,7 +286,19 @@ code {
   font-size: 16px;
   margin-bottom: 7px;
 }
+.para{
+  margin: 10px;
+}
 
+#addGuest{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  align-items: center;
+  gap: 10px;
+  margin-left: 7px;
+  margin-bottom: 10px;
+}
 .newGath{
   position: relative;
   top: 60px;
@@ -285,7 +314,6 @@ code {
 }
 
 .newGatheringTitle{
-  font-family: Impact;
   position: relative;
   display: flex;
   margin: auto;
@@ -503,7 +531,6 @@ code {
   border-radius: 10px;
   padding:7px;
   margin-bottom: 7px;
-  font-family: impact;
 }
 .rsvpWrapper{
   display: flex;

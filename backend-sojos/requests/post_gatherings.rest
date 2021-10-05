@@ -1,0 +1,9 @@
+Post http://localhost:3003/api/gatherings
+Content-Type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IkRlcmVrIiwiaWQiOiI2MTMzZDYyNTBhODRiODI5NjVkMzBjZmIiLCJpYXQiOjE2MzA3ODcxNTJ9.YCXkwAs_jkUoIkv7PPgx-AudimQENrRRp945LKTBZN0
+
+{ 
+  "date": "Sat. Sep 4",
+  "time": "6 p.m. - 8 p.m.",
+  "content": "Due to it being a holiday weekend, we’re going to keep it low key and have an evening of fellowship and fun.  There won’t be an organized plan for the evening.  Our core will get us back to business the following week.  For this week, bring any outdoor games you might like to play.  If we need a topic of discussion for the evening between gaming, feel free to share your favorite moment/experience from this summer.\n\nWe look forward to seeing everyone (the people without cool plans for the holiday weekend)\n\nDan, David, James, Kevin, and Nayt"
+}

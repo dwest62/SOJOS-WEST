@@ -15,6 +15,7 @@ const HomePage = () => {
   const history = useHistory()
   
   const gatherings = useSelector(state => state.gatherings)
+  const users = useSelector(state => state.users)
   const [ gathering, setGathering ] = useState(sortByDate(gatherings)[0])
 
   useEffect(() => {
@@ -31,11 +32,17 @@ const HomePage = () => {
       convertFromRaw(JSON.parse(gathering.content))))
   },[gathering])
   
-  /********Convert date for display*************************** */
+  /********Convert date for display************************* */
   const string = dateHelper(gathering)
   /********************************************************* */
 
-  const rsvpValue = gathering.rsvp.filter(data => data.rsvp === 'true').length
+
+  const rsvpValue = 
+    gathering.rsvp.filter(data => data.rsvp === 'true')
+  const kidRsvp = 1 
+  const adultRsvp = 1
+
+  
 
   const defaultHost = (value) => {
     switch(value){
@@ -84,8 +91,8 @@ const HomePage = () => {
           </p>
           <div id='location'>
             <strong>Location:</strong>{' '}
-            {defaultHost(gathering.location.street)}
-            <div id='locationdata'>
+            {' '}{defaultHost(gathering.location.street)}
+            <div id='locationdata' className='para'>
               {gathering.location.street}
               <div>
                 {`${gathering.location.city} ${gathering.location.state} ${gathering.location.postal}`}
@@ -94,8 +101,8 @@ const HomePage = () => {
           </div>
           <div>
             <RSVP gathering={gathering}/>
-            <p>
-              Attending: {rsvpValue}
+            <p className='.para'>
+              Attending: {adultRsvp} adults {kidRsvp} kids
             </p>
             <strong>Details for the evening:</strong> 
           </div>

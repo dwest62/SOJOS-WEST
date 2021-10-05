@@ -14,7 +14,7 @@ const Notification = () => {
         <div>
           <ErrorOutlineIcon color='error'/>
         </div>
-        <div>
+        <div className='logNotif'>
           {notification}
         </div>
       </div>

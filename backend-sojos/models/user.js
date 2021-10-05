@@ -7,14 +7,18 @@ const userSchema = new mongoose.Schema({
     unique: true,
     minlength: 3
   },
-  name: String,
+  firstName: String,
+  lastName: String,
   passwordHash: String,
-  blogs: [
+  gatherings: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref:'Blog'
+      ref:'Gathering'
     }
-  ]
+  ],
+  rsvp: Array,
+  core: Number,
+  kid: Boolean,
 })
 
 userSchema.set('toJSON', {

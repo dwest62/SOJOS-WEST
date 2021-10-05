@@ -7,7 +7,6 @@ const config = require('../utils/config')
 
 loginRouter.post('/', async (request, response) => {
   const body = request.body
-  console.log('sucess')
   const user = await User.findOne({ username: body.username })
 
   const passwordCorrect = user === null
@@ -29,7 +28,7 @@ loginRouter.post('/', async (request, response) => {
 
   response
     .status(200)
-    .send({ token, username: user.username, name: user.name })
+    .send({ token, username: user.username, firstName: user.firstName, lastName: user.lastName })
 })
 
 module.exports = loginRouter

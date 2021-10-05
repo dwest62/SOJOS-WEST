@@ -33,7 +33,6 @@ const RSVP = ({gathering}) => {
   return(
     <div>
       <div><strong>Please RSVP:</strong></div>
-      <p>Choose yes, undecided, or no:</p>
       <div id='notification'>
         {notification}
       </div>
@@ -44,20 +43,27 @@ const RSVP = ({gathering}) => {
         )}
       </div>
       <Toggable id='addGuestBtn' buttonLabel="add guest" cancel="cancel">
-        <strong>Add Guest:</strong>
-        <form onSubmit={handleAddGuest}>
-          name:{' '}
-          <input 
-            name='guest' 
-            placeholder='guest name'
-          />
-          <input
-            name='kid'
-            type='checkbox'
-          />
-          kid
-          <Button type='submit'>add guest</Button>
-        </form>
+        <div>
+          <strong>Add Guest:</strong>
+          <form onSubmit={handleAddGuest} id='addGuest'>
+            name:{' '}
+            <div className='input-wrapper3'>
+              <input
+                className='input-box2'
+                name='guest' 
+                placeholder='guest name'
+              />
+            </div>
+            <div>
+              <input
+              name='kid'
+              type='checkbox'
+            />
+            {' '}kid
+            </div>
+            <Button type='submit'>add guest</Button>
+          </form>
+        </div>
       </Toggable>
     </div>
   )
