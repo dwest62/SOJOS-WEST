@@ -37,10 +37,12 @@ const HomePage = () => {
   /********************************************************* */
 
 
-  const rsvpValue = 
+  const rsvpValue =
     gathering.rsvp.filter(data => data.rsvp === 'true')
-  const kidRsvp = 1 
-  const adultRsvp = 1
+  const kids = users.filter(data => data.kid === true).map(data => data.username)
+  const adults = users.filter(data => data.kid === false).map(data => data.username)
+  const kidRsvp = rsvpValue.filter(data => kids.includes(data.username)).length
+  const adultRsvp = rsvpValue.filter(data => adults.includes(data.username)).length
 
   
 
