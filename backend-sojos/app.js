@@ -24,7 +24,7 @@ mongoose.connect(config.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology
     logger.error('error connecting to MongoDB:', error.message)
   })
 
-//app.use(sslRedirect())
+if(process.env.NODE_ENV === 'production'){app.use(sslRedirect())}
 app.use(express.static('build'))
 app.use(cors())
 app.use(express.json())

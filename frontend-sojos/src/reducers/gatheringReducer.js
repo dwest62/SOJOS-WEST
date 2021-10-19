@@ -15,7 +15,9 @@ const gatheringReducer = (state = null, action) => {
     case 'ADD_COMMENT':
       const idData = action.data.response.id
       const gatheringToUpdate = state.find(data => data.id === idData)
-      gatheringToUpdate.comments = gatheringToUpdate.comments.concat(action.data.comment)
+      gatheringToUpdate.comments
+        ? gatheringToUpdate.comments = gatheringToUpdate.comments.concat(action.data.comment)
+        : gatheringToUpdate.comments = [action.data.comment]
       return state.map(data => data.id !== idData ? data : gatheringToUpdate)
     case 'RSVP':
       const id = action.data.response.id

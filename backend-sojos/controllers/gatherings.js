@@ -57,7 +57,7 @@ gatheringsRouter.post('/', async (request, response) => {
     endTime: body.endTime,
     content: body.content,
     user: user.id,
-    location: body.location
+    location: body.location,
   })
 
   const savedGathering = await gathering.save()
@@ -69,10 +69,11 @@ gatheringsRouter.post('/', async (request, response) => {
 
 gatheringsRouter.post('/:id/comments', async (request, response) => {
   const body = request.body
+  console.log(body,'body')
   const gathering = await Gathering.findById(request.params.id)
   gathering.comments
-    ? gathering.comments = gathering.comments.concat(body.comment)
-    : gathering.comments = [body.comment]
+    ? gathering.comments = gathering.comments.concat(body)
+    : gathering.comments = [body]
   await gathering.save()
 
   response.status(201).json(gathering)

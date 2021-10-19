@@ -40,7 +40,7 @@ const deleteMeeting = async (id) => {
 }
 
 const comment = async (gathering, newComment) => {
-  const comment = {comment: newComment}
+  const comment = newComment
   const id = gathering.id
   const response = await axios.post(`${baseUrl}/${id}/comments`, comment)
   return response.data

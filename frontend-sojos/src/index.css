@@ -12,6 +12,31 @@ body {
   url("./fonts/NEON.ttf");
 }
 
+.commentsWrapper{
+  display: flex;
+  flex-direction: column;
+  gap:7px;
+  border-bottom: 5px;
+}
+.commentsOuterWrapper{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap:25px;
+}
+.commentsData{
+  border-radius: 5px;
+  box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 32%);
+  width: fit-content;
+  background-color:rgb(117, 133, 169);
+  padding:7px;
+  color: white;
+  font-size: 18px;
+}
+.cite{
+  position:relative;
+  font-size: 12px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
@@ -299,6 +324,33 @@ code {
   gap: 10px;
   margin-left: 7px;
   margin-bottom: 10px;
+}
+#addCommentBtn{
+  font-size: 16px;
+  margin-top: 7px;
+}
+#addComment{
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+  align-items: center;
+  gap: 10px;
+  margin-left: 7px;
+  margin-bottom: 10px;
+  height: fit-content;
+}
+#comment-input-wrapper{
+  display: flex;
+  flex-grow:.5;
+  border-radius: 7px;
+}
+.spacer{
+  height: 10px;
+}
+#comment-input-box{
+  flex-grow: 1;
+  padding:5px;
+  font-size: 14px;
 }
 .newGath{
   position: relative;

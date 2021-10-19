@@ -12,7 +12,7 @@
     "deploy:dh": "git add . && git commit -m 'deploy dh'",
     "build:ui": "rm -rf build && cd ../frontend-sojos/ && npm run build --prod && cp -r build ../backend-sojos",
     "deploy": "git push heroku main",
-    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy"
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && npm run deploy"
   },
   "author": "\"James West\"",
   "license": "ISC",

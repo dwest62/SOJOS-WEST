@@ -1,0 +1,9 @@
+POST http://localhost:3003/api/gatherings/616ee625a2b71e057e6bbd7f/comments
+Content-Type: application/json
+
+{
+  "username": "Admin",
+  "firstName": "James",
+  "lastName": "West",
+  "comment": "test"
+}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import Toggable from './Toggable'
 import { useSelector } from 'react-redux'
 import RSVPList from './RSVPList'
 import { convertFromRaw } from 'draft-js'
@@ -10,6 +9,7 @@ import moment from 'moment'
 import EditIcon from '@material-ui/icons/Edit'
 import { dateHelper, sortByDate } from './listHelper'
 import RSVP from './RSVP'
+import Comment from './Comment'
 
 const HomePage = () => {
   const history = useHistory()
@@ -69,6 +69,7 @@ const HomePage = () => {
   }
 
   return(
+    <div>
       <div className='gatheringContent'>
         <h2 className='gatheringTitle'>
           <div className='hcgath'>
@@ -116,14 +117,16 @@ const HomePage = () => {
             />
           <p>
           </p>
-          <Toggable id='rsvp-btn' buttonLabel="Who's in?" cancel='hide'>
             <RSVPList gathering={gathering} />
-          </Toggable>
+            <div>
+            <Comment gathering={gathering} />
+            </div>
           <div className='postInfo'>
             posted on {string.postDate} at {string.postTime} by {gathering.user.firstName} {gathering.user.lastName} 
           </div>
         </div>
       </div>
+    </div>
   )
 }
 
