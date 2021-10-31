@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addComment} from '../reducers/gatheringReducer'
 import moment from 'moment'
 import { v4 as uuidv4 } from 'uuid'
+import { message } from '../reducers/notificationReducer'
 
 const AddComment = ({gathering}) => {
 
@@ -23,6 +24,7 @@ const AddComment = ({gathering}) => {
     }
     event.target.comment.value=''
     dispatch(addComment(gathering, obj))
+    dispatch(message(`Comment added!`, 5))
   }
 
   return (

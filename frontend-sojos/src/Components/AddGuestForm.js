@@ -2,6 +2,7 @@ import React from 'react'
 import { Button } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import { addGuest} from '../reducers/gatheringReducer'
+import { message } from '../reducers/notificationReducer'
 
 const AddGuest = ({gathering}) => {
 
@@ -21,6 +22,7 @@ const AddGuest = ({gathering}) => {
       kid:kid
     }
     dispatch(addGuest(gathering, guest))
+    dispatch(message('Guest added!', 5))
   }
 
   return(

@@ -8,6 +8,8 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
 import { EditorState, convertToRaw } from 'draft-js'
 import { useHistory } from 'react-router'
 import moment from 'moment'
+import emailService from '../services/email'
+
 
 
 const GatheringForm = () => {
@@ -46,6 +48,7 @@ const GatheringForm = () => {
       content: content
     }
     dispatch(createGathering(newGathering, user))
+    console.log(emailService.alert, 'emailser')
     history.push('/')
   }
 

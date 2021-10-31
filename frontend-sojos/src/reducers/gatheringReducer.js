@@ -60,6 +60,7 @@ export const createGathering = (data, user) => {
         username: user.username 
       }
     }
+  
     dispatch({
       type: 'NEW_GATHERING',
       data: newGathering

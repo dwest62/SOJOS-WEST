@@ -26,7 +26,6 @@ body {
 }
 .commentsData{
   border-radius: 5px;
-  box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 32%);
   width: fit-content;
   background-color:rgb(117, 133, 169);
   padding:7px;
@@ -265,6 +264,7 @@ code {
   margin: auto;
   margin-bottom:10px;
   justify-content: center;
+  gap:10px;
   top:0;
   position: fixed;
   z-index: 100;
@@ -603,37 +603,26 @@ code {
 }
 
 #arch-btn{
-  position: relative;
-  margin: 1px;
-  margin-left:4px;
-  padding: 0px;
+  font-size: large;
 }
 
 #btnId{
   font-size: large;
-  border-color: grey;
-  margin-left: 12px;
-  margin-right: 12px;
+}
+#hostbtn{
+  font-size:large;
 }
 
 #archbtn{
   font-size: large;
-  border-color: grey;
-  margin-left: 12px;
-  margin-right: 12px;
 }
 
 #homebtn{
   font-size: large;
-  border-color: grey;
-  margin-left: 12px;
-  margin-right: 12px;
 }
 
 #editBtn{
   font-size: larger;
-  border-color: grey;
-  margin-left:10px;
 }
 
 #rsvp-name{
@@ -718,11 +707,45 @@ code {
   margin-top: 20px;
   margin-left: 20px;
 }
-
+#schbtn{
+  font-size: large;
+  width: fit-content;
+}
 .gatheringParagraph2{
   margin-left:22px;
 }
-
+#schbtnwrap{
+  margin-top: 30px;
+  margin-bottom: -10px;
+}
+.docs{
+  position: relative;
+  top: 95px;
+  width: 1750px;
+  height: 780px;
+  width:90vw;
+  height:40vw;
+}
+.schedule-header{
+    position: relative;
+    top: 80px;
+    display: flex;
+    flex-wrap:wrap;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+    width: fit-content;
+    font-family: 'Neon';
+    font-size: xx-large;
+}
+.docsWrapper{
+  display: flex;
+  width: fit-content;
+  margin: auto;
+}
+#mobile{
+  display: none;
+}
 @media (max-width:700px){
   .editicon{
     left:-2em;
@@ -750,7 +773,34 @@ code {
     text-align: center;
   }
 }
+
 @media(max-width:500px){
+  #desktop{
+    display: none;
+  }
+  #mobile{
+    display:flex;
+  }
+  .docs{
+    height:420px;
+  }
+  #menu{
+    font-size: large;
+  }
+  #menu-btns-wrapper{
+    width: 175px;
+    box-shadow: 0px 1px 4px 0 rgb(32 30 32 / 60%);
+    margin-left: auto;
+    margin-right: auto;
+    left:0;
+    right: 0;
+    position: absolute;
+    background-color: white;
+    display:flex;
+    top: 50px;
+    flex-direction: column;
+    z-index: 100;
+  }
   #logo{
     margin-top:5em;
     margin-bottom: 5em;

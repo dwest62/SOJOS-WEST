@@ -15,6 +15,7 @@ import ArchivedGatherings from './Components/ArchivedGathering'
 import HomePage from './Components/HomePage'
 import { sortByDate } from './Components/listHelper'
 import HomeDefault from './Components/HomeDefault'
+import Schedule from './Components/Schedule'
 
 const App = () => {
   const dispatch = useDispatch()
@@ -69,6 +70,9 @@ const App = () => {
             </Route>
             <Route path='/gathering/:id'>
               <Gathering gathering={gathering}/>
+            </Route>
+            <Route path='/schedule'>
+              <Schedule />
             </Route>
             <Route path='/'>
               <div className='gatheringMain'>
