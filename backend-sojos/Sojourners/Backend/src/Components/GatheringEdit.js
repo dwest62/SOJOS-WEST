@@ -1,32 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button } from '@material-ui/core'
-import { createGathering } from '../reducers/gatheringReducer'
-import { useSelector } from 'react-redux'
+import { updateGathering } from '../reducers/gatheringReducer'
 import { Editor } from 'react-draft-wysiwyg'
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css"
-import { EditorState, convertToRaw } from 'draft-js'
+import { EditorState, convertToRaw, convertFromRaw } from 'draft-js'
 import { useHistory } from 'react-router'
 import moment from 'moment'
-import emailService from '../services/email'
+import 'draft-js/dist/Draft.css'
 
 
-
-const GatheringForm = () => {
+const GatheringEdit = ({gathering}) => {
   const history = useHistory()
-  const dispatch = useDispatch()
-  
-  const [ editor, setEditor ] = useState(() =>
-  EditorState.createEmpty())
-  const [ address, setAddress ] = useState({street:'', city:'', state:'', postal:''})
 
-  useEffect(() => {
+  const [ editor, setEditor ] = useState(() =>
+  EditorState.createWithContent(
+    convertFromRaw(JSON.parse(gathering.content)))
+  )
+  
+  const [ address, setAddress ] = 
+    useState({
+      street:gathering.location.street,
+      city:gathering.location.city,
+      state:gathering.location.state,
+      postal:gathering.location.postal
+    })
+
+  useEffect(() =>{
     console.log(editor)
   }, [editor])
 
-  const user = useSelector(state => state.user).user
+  const dispatch = useDispatch()
 
-  const newGathering = (event) => {
+  const initialDate = moment(gathering.date).format("YYYY-MM-DD")
+  
+  const handleUpdateGathering = (event) => {
     event.preventDefault()
     const date = moment(event.target.date.value)
     const startTime = event.target.startTime.value
@@ -35,20 +43,19 @@ const GatheringForm = () => {
       street: event.target.street.value,
       city: event.target.city.value,
       state: event.target.state.value,
-      postal: event.target.postal.value,
+      postal: event.target.postal.value
     }
-
     const content = JSON.stringify(convertToRaw(editor.getCurrentContent()))
-    const newGathering = {
-      postDate:moment(new Date()),
+    const updatedGathering = {
+      rsvp: gathering.rsvp,
+      user: gathering.user,
       date: date,
       startTime: startTime,
       endTime: endTime,
       location: location,
       content: content
     }
-    dispatch(createGathering(newGathering, user))
-    emailService.alert()
+    dispatch(updateGathering(gathering.id, updatedGathering))
     history.push('/')
   }
 
@@ -96,7 +103,7 @@ const GatheringForm = () => {
       case "Gonsalves":
         return( 
           setAddress({
-            street:"9135 Hyland Creek Road",
+            street:"9135 Hyland Creek Road Bloomington",
             city:'Bloomington',
             state:'MN',
             postal:'55437'
@@ -133,35 +140,71 @@ const GatheringForm = () => {
         return setAddress({street:'', city:'', state:'', postal:''})
     }
   }
-  /* get next saturday functionality*/
-    const nextSat =moment().weekday(6).format("YYYY-MM-DD")
+  const defaultHost = (value) => {
+    switch(value){
+      case "230 83rd Ave N":
+        return "RiverPark"
+      case "10601 Oxbow Creek Drive N":
+        return "OrchardTrailPark"
+      case "2827 N Newton Ave":
+        return "BeaconOfHope"
+      case "1921 Elliot Ave":
+        return "Wanggaard"
+      case "9135 Hyland Creek Road":
+        return "Gonsalves"
+      case "10336 Yates Drive N":
+        return "Mathsen"
+      case "7940 Sunkist Blvd":
+        return "Callaghan"
+      case "8656 Riverview Lane N":
+        return "Fischer"
+      default: return "None"
+    }
+  }
   
   return (
     <div>
       <div>
-        <form onSubmit={newGathering} className='newGath'>
+        <form className='newGath' onSubmit={handleUpdateGathering}>
           <div className='newGathWrapper'>
             <h1 className='newGatheringTitle'>
-              Post Gathering
+              Edit Gathering
             </h1>
             When:
             <div className='newGathInputs'>
               <div className='input-wrapper2'>
-                <input className='input-box2' name='date' placeholder='date' type='date' defaultValue={nextSat}/>
+                <input 
+                className='input-box2'
+                name='date'
+                type='date'
+                defaultValue={initialDate}
+                readOnly={false}
+                />
               </div>
               <div className='timewrap'>
                 <div className='input-wrapper2'>
-                  <input className='input-box3' name='startTime' type='time' placeholder='start time' defaultValue={'16:30'}/>
+                  <input 
+                    className='input-box3'
+                    name='startTime'
+                    type='time'
+                    defaultValue={gathering.startTime}
+                    placeholder='start time'
+                  />
                 </div>
                 <div className='input-wrapper2'>
-                  <input className='input-box3' name='endTime' type='time' placeholder='start time' defaultValue={'18:30'}/>
+                  <input
+                    className='input-box3'
+                    name='endTime'
+                    type='time'
+                    defaultValue={gathering.endTime}
+                  />
                 </div>
               </div>
             </div>
-          Where:
+            Where:
             <div className='newGathInputs'>
               <div className='input-wrapper2' id='addr-sel-wrapper'>
-                <select className='addr-sel' onChange={selectHost}>
+                <select className='addr-sel' onChange={selectHost} defaultValue={defaultHost(gathering.location.street)}>
                   <option value="None">(None)</option>
                   <option value="RiverPark">River Park</option>
                   <option value="OrchardTrailPark">Orchard Trail Park</option>
@@ -210,7 +253,7 @@ const GatheringForm = () => {
                 />
               </div>
             </div>
-            Details:
+              Details:
               <div style={{ border: "1px solid black", padding: '2px', minHeight: '300px', marginTop: '20px'}}>
                 <Editor
                   toolbar={{
@@ -225,15 +268,16 @@ const GatheringForm = () => {
                   onEditorStateChange={setEditor}
                 />
               </div>
-                <div>
-                  <Button type='submit'>submit</Button>
-                  <Button onClick={() => history.push('/')}> cancel</Button>
-                </div>
+              <div>
+                <Button type='submit'>submit</Button>
+                <Button onClick={() => history.push('/')}>cancel</Button>
+              </div>
             </div>
           </form>
-        </div>
+          
+      </div>
     </div>
   )
 }
 
-export default GatheringForm
+export default GatheringEdit
